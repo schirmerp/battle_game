@@ -1,9 +1,9 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import DumbBattle from './components/dumb_battle.vue'
 </script>
 
 <template>
-  <HelloWorld />
+  <DumbBattle />
 </template>
 
 <style scoped>
