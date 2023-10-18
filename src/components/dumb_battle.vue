@@ -1,4 +1,5 @@
 <script setup>
+
 import { ref } from 'vue'
 
 defineProps({
@@ -76,6 +77,7 @@ players.forEach((player) => {
 });
 
 const count = ref(0)
+
 </script>
 
 <template>
