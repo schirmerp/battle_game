@@ -1,5 +1,6 @@
 <script setup>
 import DumbBattle from './components/dumb_battle.vue'
+import home from './components/home.vue'
 </script>
 
 <template>
