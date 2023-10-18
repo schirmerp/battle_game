@@ -19,10 +19,10 @@ const player1Moves = [
 ];
 
 const player2Moves = [
-  { name: 'Defend', cooldown: 0, currentCooldown: 0, action: function() { this.defense += 2; return 0; } },
+  { name: 'Smash', cooldown: 0, currentCooldown: 0, action: function(target) { return this.attack * 2; } },
   { name: 'Heal', cooldown: 3, currentCooldown: 0, action: function() { this.health += 20; return 0; } },
-  { name: 'Barrier', cooldown: 4, currentCooldown: 0, action: function() { this.defense += 4; return 0; } },
-  { name: 'Revive', cooldown: 5, currentCooldown: 0, action: function() { if (this.health <= 0) this.health = 30; return 0; } },
+  { name: 'Earth Throw', cooldown: 5, currentCooldown: 0, action: function(target) { return this.attack * 6; }  },
+  { name: 'Revive', cooldown: 5, currentCooldown: 0, action: function() { this.health += 50; return 0; } },
 ];
 
 const player3Moves = [
