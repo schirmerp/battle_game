@@ -80,6 +80,10 @@ const resetGame = () => {
   players.value.forEach(player => {
     player.health = 100;
     player.attackHistory = [];
+    // Reset the current cooldown for each move of the player
+    player.moves.forEach(move => {
+      move.currentCooldown = 0;
+    });
   });
 };
 const isPlayerTurn = (player) => {

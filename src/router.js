@@ -8,6 +8,7 @@ import comp_battle from './components/comp_battle.vue';
 import moves_battle from './components/moves_battle.vue';
 import home from './components/home.vue';
 import alt_logic_battle from './components/alt_logic_battle.vue';
+import real_gpt4 from './components/real_gpt4.vue';
 
 const routes = [
   { path: '/', component: home },
@@ -16,6 +17,7 @@ const routes = [
   { path: '/moves_battle', component: moves_battle },
   { path: '/comp_battle', component: comp_battle },
   { path: '/alt_logic', component: alt_logic_battle },
+  { path: '/real_gpt4', component: real_gpt4 },
 ];
 
 const router = createRouter({

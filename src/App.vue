@@ -12,6 +12,7 @@ import home from './components/home.vue'
       <router-link to="/comp_battle">gpt-4 battle</router-link>
       <router-link to="/moves_battle">moves battle</router-link>
       <router-link to="/alt_logic">alt move logic battle</router-link>
+      <router-link to="/real_gpt4">real_gpt4 battle</router-link>
       </header>
       <router-view />
     </div>
