@@ -14,38 +14,38 @@ import { Player, playersObject, allPlayer } from './player.js';
 // }
 
 // const player1Moves = [
-//     { name: 'Slash', cooldown: 0, currentCooldown: 0, action: function(target) { return this.attack * 2 * getMultiplier(); } },
-//     { name: 'Pierce', cooldown: 2, currentCooldown: 0, action: function(target) { return this.attack * 2.5 * getMultiplier(); } },
-//     { name: 'Cleave', cooldown: 3, currentCooldown: 0, action: function(target) { return this.attack * 1.5 * getMultiplier(); } },
-//     { name: 'Execute', cooldown: 4, currentCooldown: 0, action: function(target) { return target.health < 20 ? target.health : this.attack * 3 * getMultiplier(); } },
+//     { name: 'Slash', type: 'Attack', cooldown: 0, currentCooldown: 0, action: function(target) { return this.attack * 2 * getMultiplier(); } },
+//     { name: 'Pierce', type: 'Attack', cooldown: 2, currentCooldown: 0, action: function(target) { return this.attack * 2.5 * getMultiplier(); } },
+//     { name: 'Cleave', type: 'Attack', cooldown: 3, currentCooldown: 0, action: function(target) { return this.attack * 1.5 * getMultiplier(); } },
+//     { name: 'Execute', type: 'Attack', cooldown: 4, currentCooldown: 0, action: function(target) { return target.health < 20 ? target.health : this.attack * 3 * getMultiplier(); } },
 //   ];
   
 //   const player2Moves = [
-//     { name: 'Smash', cooldown: 0, currentCooldown: 0, action: function(target) { return this.attack * 2 * getMultiplier(); } },
-//     { name: 'Heal', cooldown: 3, currentCooldown: 0, action: function() { this.health += 20 * getMultiplier(); return 0; } },
-//     { name: 'Earth Throw', cooldown: 5, currentCooldown: 0, action: function(target) { return this.attack * 6 * getMultiplier(); }  },
-//     { name: 'Revive', cooldown: 5, currentCooldown: 0, action: function() { this.health += 50 * getMultiplier(); return 0; } },
+//     { name: 'Smash', type: 'Attack', cooldown: 0, currentCooldown: 0, action: function(target) { return this.attack * 2 * getMultiplier(); } },
+//     { name: 'Heal', type: 'Heal', cooldown: 3, currentCooldown: 0, action: function() { const effect = this.health += 20 * getMultiplier(); return effect; } },
+//     { name: 'Earth Throw', type: 'Attack', cooldown: 5, currentCooldown: 0, action: function(target) { return this.attack * 6 * getMultiplier(); }  },
+//     { name: 'Revive', type: 'Heal', cooldown: 5, currentCooldown: 0, action: function() {const effect = this.health += 50 * getMultiplier(); return effect; } },
 //   ];
   
 //   const player3Moves = [
-//     { name: 'Stab', cooldown: 0, currentCooldown: 0, action: function(target) { return this.attack * 1.5 * getMultiplier(); } },
-//     { name: 'Dodge', cooldown: 2, currentCooldown: 0, action: function() { this.defense += 2; return 0; } },
-//     { name: 'Minor Heal', cooldown: 3, currentCooldown: 0, action: function() { this.health += 10 * getMultiplier(); return 0; } },
-//     { name: 'Charge', cooldown: 4, currentCooldown: 0, action: function(target) { return this.attack * 2.2 * getMultiplier(); } },
+//     { name: 'Stab', type: 'Attack', cooldown: 0, currentCooldown: 0, action: function(target) { return this.attack * 1.5 * getMultiplier(); } },
+//     { name: 'Dodge', type: 'Defense', cooldown: 2, currentCooldown: 0, action: function() { const effect = this.defense += 2; return effect; } },
+//     { name: 'Minor Heal', type: 'Heal', cooldown: 3, currentCooldown: 0, action: function() { const effect = this.health += 10 * getMultiplier(); return effect; } },
+//     { name: 'Charge', type: 'Attack', cooldown: 4, currentCooldown: 0, action: function(target) { return this.attack * 2.2 * getMultiplier(); } },
 //   ];
   
 //   const player4Moves = [
-//     { name: 'Butt Hug', cooldown: 0, currentCooldown: 0, action: function(target) { return this.attack * 2.5 * getMultiplier(); } },
-//     { name: 'Butt Pucker', cooldown: 2, currentCooldown: 0, action: function() { this.defense += 5; return 0; } },
-//     { name: 'Butt Replenish', cooldown: 3, currentCooldown: 0, action: function() { this.health += 30 * getMultiplier(); return 0; } },
-//     { name: 'Shit on em', cooldown: 4, currentCooldown: 0, action: function(target) { return this.attack * 7.2 * getMultiplier(); } },
+//     { name: 'Butt Hug', type: 'Attack', cooldown: 0, currentCooldown: 0, action: function(target) { return this.attack * 2.5 * getMultiplier(); } },
+//     { name: 'Butt Pucker', type: 'Defense', cooldown: 2, currentCooldown: 0, action: function() { const effect = this.defense += 5; return effect; } },
+//     { name: 'Butt Replenish', type: 'Heal', cooldown: 3, currentCooldown: 0, action: function() { const effect = this.health += 30 * getMultiplier(); return effect; } },
+//     { name: 'Shit on em', type: 'Attack', cooldown: 4, currentCooldown: 0, action: function(target) { return this.attack * 7.2 * getMultiplier(); } },
 //   ];
   
 //   const player5Moves = [
-//     { name: 'Face Twist', cooldown: 0, currentCooldown: 0, action: function(target) { return this.attack * 2.5 * getMultiplier(); } },
-//     { name: 'Low Blow', cooldown: 2, currentCooldown: 0, action: function(target) { return this.attack * 3 * getMultiplier();} },
-//     { name: 'Health Punch', cooldown: 3, currentCooldown: 0, action: function() { this.health += 25 * getMultiplier(); return 0; } },
-//     { name: 'Death Shove', cooldown: 5, currentCooldown: 0, action: function(target) { return this.attack * 5.2 * getMultiplier(); } },
+//     { name: 'Face Twist', type: 'Attack', cooldown: 0, currentCooldown: 0, action: function(target) { return this.attack * 2.5 * getMultiplier(); } },
+//     { name: 'Low Blow', type: 'Attack', cooldown: 2, currentCooldown: 0, action: function(target) { return this.attack * 3 * getMultiplier();} },
+//     { name: 'Health Punch', type: 'Heal', cooldown: 3, currentCooldown: 0, action: function() {const effect = this.health += 25 * getMultiplier(); return effect; } },
+//     { name: 'Death Shove', type: 'Attack', cooldown: 5, currentCooldown: 0, action: function(target) { return this.attack * 5.2 * getMultiplier(); } },
 //   ];
   
 //   const player1 = new Player("Player 1", 1000, 8, 5, './src/assets/p1.png', player1Moves);
@@ -98,41 +98,37 @@ const isSelected = (player) => {
 }
 const executeMove = (move, player) => {
   if (!isPlayerTurn(player)) return;
-  // Get the opponent
+
   const opponent = players.value.find(p => p !== player);
 
-  // Call the action of the move
   const damageOrEffect = move.action.call(player, opponent);
 
-  // Apply the damage or effect
-  if (damageOrEffect > 0) {
-    opponent.health -= damageOrEffect;
-    if (opponent.health < 0) opponent.health = 0;
-  }
-
-  let message = '';
   switch (move.type) {
     case 'Attack':
-      message = `${player.name} attacked ${opponent.name} with ${move.name} for ${damageOrEffect} damage!`;
+      opponent.health -= damageOrEffect;
+      if (opponent.health < 0) opponent.health = 0;
+      player.attackHistory.push(`${player.name} attacked ${opponent.name} with ${move.name} for ${damageOrEffect} damage!`);
       break;
     case 'Defense':
-      message = `${player.name} defended using ${move.name} for ${damageOrEffect}.`;
+      player.defense += damageOrEffect;
+      player.attackHistory.push(`${player.name} defended using ${move.name} and increased defense by ${damageOrEffect}.`);
       break;
     case 'Heal':
-      message = `${player.name} healed for ${damageOrEffect} health using ${move.name}.`;
+      player.health += damageOrEffect;
+      if (player.health > 100) player.health = 100; // Assuming 100 is the max health
+      player.attackHistory.push(`${player.name} healed for ${damageOrEffect} health using ${move.name}.`);
       break;
     case 'Effect':
-      message = `${player.name} used ${move.name} on ${opponent.name} for a special effect of ${damageOrEffect}.`;
+      let target = move.target === "self" ? player : opponent;
+      if (move.effectType === "attack") {
+        target.attack += damageOrEffect;  // Assuming each player has an 'attack' property
+      } else if (move.effectType === "defense") {
+        target.defense += damageOrEffect;
+      }
+      player.attackHistory.push(`${player.name} used ${move.name} on ${move.target === "self" ? "themselves" : opponent.name} for a ${move.effectType} effect of ${damageOrEffect}.`);
       break;
   }
 
-  // Add the move message to the attack history
-  player.attackHistory.push(message);
-
-  // Add the move to the attack history
-  // player.attackHistory.push(`${player.name} used ${move.name} on ${opponent.name} for ${damageOrEffect} damage!`);
-
-  // Handle cooldowns for the player's moves
   player.moves.forEach(m => {
     if (m === move && m.currentCooldown === 0) {
       m.currentCooldown = m.cooldown;
@@ -140,12 +136,9 @@ const executeMove = (move, player) => {
       m.currentCooldown--;
     }
   });
-  
 
-  // Switch the turn to the opponent
   currentPlayerIndex.value = players.value.indexOf(opponent);
 
-  // Check for game over
   if (opponent.health <= 0) {
     attackResult.value = `${opponent.name} has been defeated! ${player.name} wins!`;
     setTimeout(() => {
@@ -153,6 +146,7 @@ const executeMove = (move, player) => {
     }, 2000);
   }
 }
+
 
 </script>
 
