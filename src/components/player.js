@@ -9,47 +9,48 @@ export function Player(name, health = 100, attack = 0, defense = 0, img, moves) 
     this.attackHistory = [];
     this.moves = moves;
   }
-  
+  const getMultiplier = () => Math.floor(Math.random() * 5) + 1;
+
   const player1Moves = [
-    { name: 'Slash', cooldown: 0, currentCooldown: 0, action: function(target) { return this.attack * 2; } },
-    { name: 'Pierce', cooldown: 2, currentCooldown: 0, action: function(target) { return this.attack * 2.5; } },
-    { name: 'Cleave', cooldown: 3, currentCooldown: 0, action: function(target) { return this.attack * 1.5; } },
-    { name: 'Execute', cooldown: 4, currentCooldown: 0, action: function(target) { return target.health < 20 ? target.health : this.attack * 3; } },
+    { name: 'Slash', type: 'Attack', cooldown: 0, currentCooldown: 0, action: function(target) { return this.attack * 2 * getMultiplier(); } },
+    { name: 'Pierce', type: 'Attack', cooldown: 2, currentCooldown: 0, action: function(target) { return this.attack * 2.5 * getMultiplier(); } },
+    { name: 'Cleave', type: 'Attack', cooldown: 3, currentCooldown: 0, action: function(target) { return this.attack * 1.5 * getMultiplier(); } },
+    { name: 'Execute', type: 'Attack', cooldown: 4, currentCooldown: 0, action: function(target) { return target.health < 20 ? target.health : this.attack * 3 * getMultiplier(); } },
   ];
   
   const player2Moves = [
-    { name: 'Smash', cooldown: 0, currentCooldown: 0, action: function(target) { return this.attack * 2; } },
-    { name: 'Heal', cooldown: 3, currentCooldown: 0, action: function() { this.health += 20; return 0; } },
-    { name: 'Earth Throw', cooldown: 5, currentCooldown: 0, action: function(target) { return this.attack * 6; }  },
-    { name: 'Revive', cooldown: 5, currentCooldown: 0, action: function() { this.health += 50; return 0; } },
+    { name: 'Smash', type: 'Attack', cooldown: 0, currentCooldown: 0, action: function(target) { return this.attack * 2 * getMultiplier(); } },
+    { name: 'Heal', type: 'Heal', cooldown: 3, currentCooldown: 0, action: function() { this.health += 20 * getMultiplier(); return 0; } },
+    { name: 'Earth Throw', type: 'Attack', cooldown: 5, currentCooldown: 0, action: function(target) { return this.attack * 6 * getMultiplier(); }  },
+    { name: 'Revive', type: 'Heal', cooldown: 5, currentCooldown: 0, action: function() { this.health += 50 * getMultiplier(); return 0; } },
   ];
   
   const player3Moves = [
-    { name: 'Stab', cooldown: 0, currentCooldown: 0, action: function(target) { return this.attack * 1.5; } },
-    { name: 'Dodge', cooldown: 2, currentCooldown: 0, action: function() { this.defense += 2; return 0; } },
-    { name: 'Minor Heal', cooldown: 3, currentCooldown: 0, action: function() { this.health += 10; return 0; } },
-    { name: 'Charge', cooldown: 4, currentCooldown: 0, action: function(target) { return this.attack * 2.2; } },
+    { name: 'Stab', type: 'Attack', cooldown: 0, currentCooldown: 0, action: function(target) { return this.attack * 1.5 * getMultiplier(); } },
+    { name: 'Dodge', type: 'Defense', cooldown: 2, currentCooldown: 0, action: function() { this.defense += 2; return 0; } },
+    { name: 'Minor Heal', type: 'Heal', cooldown: 3, currentCooldown: 0, action: function() { this.health += 10 * getMultiplier(); return 0; } },
+    { name: 'Charge', type: 'Attack', cooldown: 4, currentCooldown: 0, action: function(target) { return this.attack * 2.2 * getMultiplier(); } },
   ];
   
   const player4Moves = [
-    { name: 'Butt Hug', cooldown: 0, currentCooldown: 0, action: function(target) { return this.attack * 2.5; } },
-    { name: 'Butt Pucker', cooldown: 2, currentCooldown: 0, action: function() { this.defense += 5; return 0; } },
-    { name: 'Butt Replenish', cooldown: 3, currentCooldown: 0, action: function() { this.health += 30; return 0; } },
-    { name: 'Shit on em', cooldown: 4, currentCooldown: 0, action: function(target) { return this.attack * 7.2; } },
+    { name: 'Butt Hug', type: 'Attack', cooldown: 0, currentCooldown: 0, action: function(target) { return this.attack * 2.5 * getMultiplier(); } },
+    { name: 'Butt Pucker', type: 'Defense', cooldown: 2, currentCooldown: 0, action: function() { this.defense += 5; return 0; } },
+    { name: 'Butt Replenish', type: 'Heal', cooldown: 3, currentCooldown: 0, action: function() { this.health += 30 * getMultiplier(); return 0; } },
+    { name: 'Shit on em', type: 'Attack', cooldown: 4, currentCooldown: 0, action: function(target) { return this.attack * 7.2 * getMultiplier(); } },
   ];
   
   const player5Moves = [
-    { name: 'Face Twist', cooldown: 0, currentCooldown: 0, action: function(target) { return this.attack * 2.5; } },
-    { name: 'Low Blow', cooldown: 2, currentCooldown: 0, action: function(target) { return this.attack * 3;} },
-    { name: 'Health Punch', cooldown: 3, currentCooldown: 0, action: function() { this.health += 25; return 0; } },
-    { name: 'Death Shove', cooldown: 5, currentCooldown: 0, action: function(target) { return this.attack * 5.2; } },
+    { name: 'Face Twist', type: 'Attack', cooldown: 0, currentCooldown: 0, action: function(target) { return this.attack * 2.5 * getMultiplier(); } },
+    { name: 'Low Blow', type: 'Attack', cooldown: 2, currentCooldown: 0, action: function(target) { return this.attack * 3 * getMultiplier();} },
+    { name: 'Health Punch', type: 'Heal', cooldown: 3, currentCooldown: 0, action: function() { this.health += 25 * getMultiplier(); return 0; } },
+    { name: 'Death Shove', type: 'Attack', cooldown: 5, currentCooldown: 0, action: function(target) { return this.attack * 5.2 * getMultiplier(); } },
   ];
   
-  const player1 = new Player("Player 1", 100, 8, 5, './src/assets/p1.png', player1Moves);
-  const player2 = new Player("Player 2", 100, 7, 6, './src/assets/p3.png', player2Moves);
-  const player3 = new Player("Player 3", 100, 9, 4, './src/assets/pk.png', player3Moves);
-  const player4 = new Player("Trump Butt", 100, 8, 6, './src/assets/trump.png', player4Moves);
-  const player5 = new Player("Bob", 100, 10, 2, './src/assets/scary.png', player5Moves);
+  const player1 = new Player("Player 1", 1000, 8, 5, './src/assets/p1.png', player1Moves);
+  const player2 = new Player("Player 2", 1000, 7, 6, './src/assets/p3.png', player2Moves);
+  const player3 = new Player("Player 3", 1000, 9, 4, './src/assets/pk.png', player3Moves);
+  const player4 = new Player("Trump Butt", 1000, 8, 6, './src/assets/trump.png', player4Moves);
+  const player5 = new Player("Bob", 1000, 10, 2, './src/assets/scary.png', player5Moves);
   
   const playersObject = {
     player1,
