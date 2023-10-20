@@ -1,6 +1,5 @@
 <script setup>
-import DumbBattle from './components/dumb_battle.vue'
-import home from './components/home.vue'
+
 </script>
 
 <template>
@@ -8,11 +7,10 @@ import home from './components/home.vue'
       <header>
       <router-link to="/">Home</router-link>
       <router-link to="/dumb_battle">Dumb Battle</router-link>
-      <router-link to="/stupid_battle">Stupid battle</router-link>
-      <router-link to="/comp_battle">gpt-4 battle</router-link>
-      <router-link to="/moves_battle">moves battle</router-link>
-      <router-link to="/alt_logic">alt move logic battle</router-link>
+      <router-link to="/moves_battle">Moves Battle</router-link>
+      <router-link to="/alt_logic">Alt Move Logic Battle</router-link>
       <router-link to="/real_gpt4">real_gpt4 battle</router-link>
+      <router-link to="/fireball_battle">Fireball Battle</router-link>
       </header>
       <router-view />
     </div>

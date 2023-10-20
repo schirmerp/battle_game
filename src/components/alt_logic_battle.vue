@@ -83,23 +83,23 @@
   const getRandomMultiplier = (range) => Math.floor(Math.random() * (range[1] - range[0] + 1) + range[0]);
   
   const player1Moves = [
-    { name: 'Slash', target: 'opponent', attackValue: { base: 2, multiplierRange: [1, 5] }, defenseBoost: null, defenseWeaken: 2, healing: null, cooldown: 0, currentCooldown: 0 },
+    { name: 'Slash', target: 'opponent', attackValue: { base: 3, multiplierRange: [1, 5] }, defenseBoost: null, defenseWeaken: 2, healing: null, cooldown: 0, currentCooldown: 0 },
     { name: 'Parry', target: 'self', attackValue: null, defenseBoost: 3, defenseWeaken: null, healing: null, cooldown: 1, currentCooldown: 0 },
-    { name: 'Double Slash', target: 'opponent', attackValue: { base: 4, multiplierRange: [1, 4] }, defenseBoost: null, defenseWeaken: null, healing: null, cooldown: 2, currentCooldown: 0 },
+    { name: 'Double Slash', target: 'opponent', attackValue: { base: 6, multiplierRange: [1, 4] }, defenseBoost: null, defenseWeaken: null, healing: null, cooldown: 2, currentCooldown: 0 },
     { name: 'Evade', target: 'self', attackValue: null, defenseBoost: null, defenseWeaken: null, healing: 5, cooldown: 3, currentCooldown: 0 },
   ];
   
   const player2Moves = [
-    { name: 'Punch', target: 'opponent', attackValue: { base: 1, multiplierRange: [1, 4] }, defenseBoost: null, defenseWeaken: null, healing: null, cooldown: 1, currentCooldown: 0 },
+    { name: 'Punch', target: 'opponent', attackValue: { base: 4, multiplierRange: [1, 4] }, defenseBoost: null, defenseWeaken: null, healing: null, cooldown: 1, currentCooldown: 0 },
     { name: 'Block', target: 'self', attackValue: null, defenseBoost: 2, defenseWeaken: null, healing: null, cooldown: 0, currentCooldown: 0 },
-    { name: 'Roundhouse Kick', target: 'opponent', attackValue: { base: 3, multiplierRange: [1, 3] }, defenseBoost: null, defenseWeaken: 1, healing: null, cooldown: 2, currentCooldown: 0 },
+    { name: 'Roundhouse Kick', target: 'opponent', attackValue: { base: 8, multiplierRange: [1, 3] }, defenseBoost: null, defenseWeaken: 1, healing: null, cooldown: 2, currentCooldown: 0 },
     { name: 'Heal Punch', target: 'self', attackValue: null, defenseBoost: null, defenseWeaken: null, healing: 4, cooldown: 3, currentCooldown: 0 },
   ];
   
   const player3Moves = [
     { name: 'Magic Bolt', target: 'opponent', attackValue: { base: 3, multiplierRange: [1, 6] }, defenseBoost: null, defenseWeaken: null, healing: null, cooldown: 1, currentCooldown: 0 },
     { name: 'Barrier', target: 'self', attackValue: null, defenseBoost: 5, defenseWeaken: null, healing: null, cooldown: 0, currentCooldown: 0 },
-    { name: 'Mana Drain', target: 'opponent', attackValue: { base: 1, multiplierRange: [1, 3] }, defenseBoost: null, defenseWeaken: 2, healing: null, cooldown: 2, currentCooldown: 0 },
+    { name: 'Mana Drain', target: 'opponent', attackValue: { base: 6, multiplierRange: [1, 3] }, defenseBoost: null, defenseWeaken: 2, healing: null, cooldown: 2, currentCooldown: 0 },
     { name: 'Healing Wave', target: 'self', attackValue: null, defenseBoost: null, defenseWeaken: null, healing: 7, cooldown: 3, currentCooldown: 0 },
   ];
   

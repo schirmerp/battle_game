@@ -1,7 +1,14 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, nextTick } from 'vue';
 import { Player, playersObject, allPlayer } from './player.js';
 
+const allPlayers = ref([...allPlayer]);
+const selectedPlayers = ref([]);
+const players = ref([]);
+const currentPlayerIndex = ref(null);
+const showSelection = ref(true);
+const attackResult = ref('');
+const fireballPosition = ref(null); // 'left', 'right', or null
 
 // const player1Moves = [
 //     { name: 'Slash', type: 'Attack', cooldown: 0, currentCooldown: 0, action: function(target) { return this.attack * 2 * getMultiplier(); } },
@@ -49,14 +56,6 @@ import { Player, playersObject, allPlayer } from './player.js';
 //   const player4 = new Player("Trump Butt", 1000, 8, 6, './src/assets/trump.png', player4Moves);
 //   const player5 = new Player("Bob", 1000, 10, 2, './src/assets/scary.png', player5Moves);
 
-const allPlayers = ref([...allPlayer]);
-const selectedPlayers = ref([]);
-const players = ref([]);
-const currentPlayerIndex = ref(null);
-const showSelection = ref(true);
-const attackResult = ref('');
-
-const getRandomMultiplier = () => Math.floor(Math.random() * 5) + 1;
 
 const selectPlayer = (player) => {
   if (selectedPlayers.value.length < 2 && !selectedPlayers.value.includes(player)) {
@@ -103,6 +102,17 @@ const executeMove = (move, player) => {
       opponent.health -= damageOrEffect;
       if (opponent.health < 0) opponent.health = 0;
       player.attackHistory.push(`${player.name} attacked ${opponent.name} with ${move.name} for ${damageOrEffect} damage!`);
+
+      // Set the fireball's starting position based on the attacking player
+      fireballPosition.value = players.value[0] === player ? 'left' : 'right';
+  
+      // After the duration of the fireball movement, unset the fireballPosition to 'hide' the fireball and complete the movement
+    nextTick(() => {
+      setTimeout(() => {
+        fireballPosition.value = null;
+      }, 500); // 500ms is the duration of the fireball movement
+    });
+  
       break;
     case 'Defense':
       player.defense += damageOrEffect;
@@ -177,6 +187,7 @@ const executeMove = (move, player) => {
     <!-- Game Screen -->
     <div v-else>
       <div class="game-container">
+        <div v-if="fireballPosition" class="fireball" :class="fireballPosition" :style="fireballPosition === 'left' ? 'left: 0;' : 'right: 0;'"></div>
         <!-- Display for each player -->
         <div v-for="player in players" :key="player.name" class="player-area">
           <div class="player-info">
@@ -258,4 +269,27 @@ const executeMove = (move, player) => {
   margin-right: auto;
   width: 10rem;
 }
+/* At the end of the <style> section */
+
+.fireball {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  background: url('../assets/fireball.png') no-repeat center;
+  border-radius: 50%;
+  transition: all 0.5s;  /* this will make it move smoothly */
+}
+
+.fireball.left {
+  left: 0;
+  top: 50%;  /* adjust the vertical positioning as needed */
+  transform: translate(100%, -50%); /* start position for left fireball */
+}
+
+.fireball.right {
+  right: 0;
+  top: 50%;  /* adjust the vertical positioning as needed */
+  transform: translate(-100%, -50%); /* start position for right fireball */
+}
+
 </style>

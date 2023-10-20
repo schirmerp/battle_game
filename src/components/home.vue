@@ -3,10 +3,11 @@
       <h1>Battle Game</h1>
       <p>Select your game type:</p>
       <div class="game-types">
-        <button @click="navigateTo('/dumb_battle')">Dumb Battle</button>
-        <button @click="navigateTo('/stupid_battle')">Stupid Battle</button>
         <button @click="navigateTo('/moves_battle')">Moves Battle</button>
-        <button @click="navigateTo('/comp_battle')">Comp Battle</button>
+        <button @click="navigateTo('/dumb_battle')">Dumb Battle</button>
+        <button @click="navigateTo('/real_gpt4')">Real GPT-4</button>
+        <button @click="navigateTo('/alt_logic')">Alt Logic Battle</button>
+        <button @click="navigateTo('/fireball_battle')">Fireball Battle</button>
       </div>
     </div>
   </template>
