@@ -3,35 +3,28 @@ import { ref } from 'vue'
 import { Player, playersObject, allPlayer } from './player.js';
 
 
-// function Player(name, health = 100, attack = 0, defense = 0, img, moves) {
-//   this.name = name;
-//   this.health = health;
-//   this.attack = attack <= 10 ? attack : 10;
-//   this.defense = defense <= 10 ? defense : 10;
-//   this.avatar = img;
-//   this.attackHistory = [];
-//   this.moves = moves;
-// }
-
 // const player1Moves = [
 //     { name: 'Slash', type: 'Attack', cooldown: 0, currentCooldown: 0, action: function(target) { return this.attack * 2 * getMultiplier(); } },
 //     { name: 'Pierce', type: 'Attack', cooldown: 2, currentCooldown: 0, action: function(target) { return this.attack * 2.5 * getMultiplier(); } },
 //     { name: 'Cleave', type: 'Attack', cooldown: 3, currentCooldown: 0, action: function(target) { return this.attack * 1.5 * getMultiplier(); } },
 //     { name: 'Execute', type: 'Attack', cooldown: 4, currentCooldown: 0, action: function(target) { return target.health < 20 ? target.health : this.attack * 3 * getMultiplier(); } },
+//     { name: 'Boost', type: 'Effect', target: 'self', effectType: 'attack', effectMagnitude: 2, effectDuration: 3, cooldown: 3, currentCooldown: 0, effectRemaining: 0, action: function() { return this.effectMagnitude; }}
 //   ];
   
 //   const player2Moves = [
-//     { name: 'Smash', type: 'Attack', cooldown: 0, currentCooldown: 0, action: function(target) { return this.attack * 2 * getMultiplier(); } },
-//     { name: 'Heal', type: 'Heal', cooldown: 3, currentCooldown: 0, action: function() { const effect = this.health += 20 * getMultiplier(); return effect; } },
-//     { name: 'Earth Throw', type: 'Attack', cooldown: 5, currentCooldown: 0, action: function(target) { return this.attack * 6 * getMultiplier(); }  },
-//     { name: 'Revive', type: 'Heal', cooldown: 5, currentCooldown: 0, action: function() {const effect = this.health += 50 * getMultiplier(); return effect; } },
+//     { name: 'Water Breathing Fourth Form Striking Tide ', type: 'Attack', cooldown: 0, currentCooldown: 0, action: function(target) { return this.attack * 5.9 * getMultiplier(); }  },
+//     { name: 'Water Breathing Sixth Form Whirlpool', type: 'Attack', cooldown: 3, currentCooldown: 0, action: function() {return this.attack * 6.3 * getMultiplier(); } },
+//     { name: 'Water Breathing Ninth Form Splashing Water Flow, Turblulent', type: 'Attack', cooldown: 4, currentCooldown: 0, action: function() {return this.attack * 7.5 * getMultiplier();  } },
+//     { name: 'Water Breathing Eleventh Form Dead Calm', type: 'Attack', cooldown: 5, currentCooldown: 0, action: function(target) { return this.attack * 9 * getMultiplier(); } },
+//     { name: 'Boost', type: 'Effect', target: 'self', effectType: 'attack', effectMagnitude: 2, effectDuration: 3, cooldown: 3, currentCooldown: 0, effectRemaining: 0, action: function() { return this.effectMagnitude; }}
 //   ];
   
 //   const player3Moves = [
-//     { name: 'Stab', type: 'Attack', cooldown: 0, currentCooldown: 0, action: function(target) { return this.attack * 1.5 * getMultiplier(); } },
-//     { name: 'Dodge', type: 'Defense', cooldown: 2, currentCooldown: 0, action: function() { const effect = this.defense += 2; return effect; } },
-//     { name: 'Minor Heal', type: 'Heal', cooldown: 3, currentCooldown: 0, action: function() { const effect = this.health += 10 * getMultiplier(); return effect; } },
-//     { name: 'Charge', type: 'Attack', cooldown: 4, currentCooldown: 0, action: function(target) { return this.attack * 2.2 * getMultiplier(); } },
+//     { name: 'Earth Bending', type: 'Attack', cooldown: 0, currentCooldown: 0, action: function(target) { return this.attack * 4.9 * getMultiplier(); } },
+//     { name: 'Air Bending', type: 'Attack', cooldown: 2, currentCooldown: 0, action: function(target) { return this.attack * 5.2 * getMultiplier(); } },
+//     { name: 'Fire bending', type: 'Attack', cooldown: 4, currentCooldown: 0, action: function(target) { return this.attack * 7.5 * getMultiplier(); } },
+//     { name: 'Water Bending Healing', type: 'Heal', cooldown: 5, currentCooldown: 0, action: function() { const effect = this.health += 9 * getMultiplier(); return effect; } },
+//     { name: 'Boost', type: 'Effect', target: 'self', effectType: 'attack', effectMagnitude: 2, effectDuration: 3, cooldown: 3, currentCooldown: 0, effectRemaining: 0, action: function() { return this.effectMagnitude; }}
 //   ];
   
 //   const player4Moves = [
@@ -39,6 +32,7 @@ import { Player, playersObject, allPlayer } from './player.js';
 //     { name: 'Butt Pucker', type: 'Defense', cooldown: 2, currentCooldown: 0, action: function() { const effect = this.defense += 5; return effect; } },
 //     { name: 'Butt Replenish', type: 'Heal', cooldown: 3, currentCooldown: 0, action: function() { const effect = this.health += 30 * getMultiplier(); return effect; } },
 //     { name: 'Shit on em', type: 'Attack', cooldown: 4, currentCooldown: 0, action: function(target) { return this.attack * 7.2 * getMultiplier(); } },
+//     { name: 'Fortify', type: 'Effect', target: 'self', effectType: 'defense', effectMagnitude: 3, effectDuration: 3, cooldown: 5, currentCooldown: 0, effectRemaining: 0, action: function() { return this.effectMagnitude; }},
 //   ];
   
 //   const player5Moves = [
@@ -46,11 +40,12 @@ import { Player, playersObject, allPlayer } from './player.js';
 //     { name: 'Low Blow', type: 'Attack', cooldown: 2, currentCooldown: 0, action: function(target) { return this.attack * 3 * getMultiplier();} },
 //     { name: 'Health Punch', type: 'Heal', cooldown: 3, currentCooldown: 0, action: function() {const effect = this.health += 25 * getMultiplier(); return effect; } },
 //     { name: 'Death Shove', type: 'Attack', cooldown: 5, currentCooldown: 0, action: function(target) { return this.attack * 5.2 * getMultiplier(); } },
+//     { name: 'Fortify', type: 'Effect', target: 'self', effectType: 'defense', effectMagnitude: 3, effectDuration: 3, cooldown: 5, currentCooldown: 0, effectRemaining: 0, action: function() { return this.effectMagnitude; }},
 //   ];
   
-//   const player1 = new Player("Player 1", 1000, 8, 5, './src/assets/p1.png', player1Moves);
-//   const player2 = new Player("Player 2", 1000, 7, 6, './src/assets/p3.png', player2Moves);
-//   const player3 = new Player("Player 3", 1000, 9, 4, './src/assets/pk.png', player3Moves);
+//   const player1 = new Player("Vanellope", 1000, 8, 5, './src/assets/p1.png', player1Moves);
+//   const player2 = new Player("Tomioka", 1000, 7, 6, './src/assets/p3.png', player2Moves);
+//   const player3 = new Player("Korra", 1000, 9, 4, './src/assets/pk.png', player3Moves);
 //   const player4 = new Player("Trump Butt", 1000, 8, 6, './src/assets/trump.png', player4Moves);
 //   const player5 = new Player("Bob", 1000, 10, 2, './src/assets/scary.png', player5Moves);
 
@@ -82,7 +77,7 @@ const resetGame = () => {
   selectedPlayers.value = [];
   showSelection.value = true;
   players.value.forEach(player => {
-    player.health = 100;
+    player.health = 1000;
     player.attackHistory = [];
     // Reset the current cooldown for each move of the player
     player.moves.forEach(move => {
@@ -115,17 +110,18 @@ const executeMove = (move, player) => {
       break;
     case 'Heal':
       player.health += damageOrEffect;
-      if (player.health > 100) player.health = 100; // Assuming 100 is the max health
+      // if (player.health > 1000) player.health = 1000; // Assuming 100 is the max health
       player.attackHistory.push(`${player.name} healed for ${damageOrEffect} health using ${move.name}.`);
       break;
     case 'Effect':
       let target = move.target === "self" ? player : opponent;
       if (move.effectType === "attack") {
-        target.attack += damageOrEffect;  // Assuming each player has an 'attack' property
+        target.attack += move.effectMagnitude;  // Apply effect
       } else if (move.effectType === "defense") {
-        target.defense += damageOrEffect;
+        target.defense += move.effectMagnitude;
       }
-      player.attackHistory.push(`${player.name} used ${move.name} on ${move.target === "self" ? "themselves" : opponent.name} for a ${move.effectType} effect of ${damageOrEffect}.`);
+      move.effectRemaining = move.effectDuration; // Initialize effect duration
+      player.attackHistory.push(`${player.name} used ${move.name} on ${move.target === "self" ? "themselves" : opponent.name} for a ${move.effectType} boost of ${move.effectMagnitude}.`);
       break;
   }
 
@@ -145,6 +141,20 @@ const executeMove = (move, player) => {
       resetGame();
     }, 2000);
   }
+
+  player.moves.forEach(m => {
+    if (m.type === 'Effect' && m.effectRemaining > 0) {
+      m.effectRemaining--;
+      if (m.effectRemaining === 0) { // If effect duration is over
+        let target = m.target === "self" ? player : opponent;
+        if (m.effectType === "attack") {
+          target.attack -= m.effectMagnitude; // Revert the effect
+        } else if (m.effectType === "defense") {
+          target.defense -= m.effectMagnitude;
+        }
+      }
+    }
+  });
 }
 
 
@@ -179,6 +189,7 @@ const executeMove = (move, player) => {
                 {{ move.name }} (Cooldown: {{ move.currentCooldown }})
               </button>
             </div>
+            <p v-for="move in player.moves" v-if="move && move.type === 'Effect' && move.effectRemaining > 0"> {{ move.name }} effect remains for {{ move.effectRemaining }} turns.</p>
             <div class="attack-history">
               <h5>Attack History:</h5>
               <ul>
