@@ -99,19 +99,16 @@ const executeMove = (move, player) => {
 
   switch (move.type) {
     case 'Attack':
+      fireballPosition.value = player === players.value[0] ? 'left' : 'right';
+        setTimeout(() => {
+          // Stop the fireball animation after 1 second (adjust as needed)
+          fireballPosition.value = null;
+        }, 1000);
+
       opponent.health -= damageOrEffect;
       if (opponent.health < 0) opponent.health = 0;
       player.attackHistory.push(`${player.name} attacked ${opponent.name} with ${move.name} for ${damageOrEffect} damage!`);
 
-      // Set the fireball's starting position based on the attacking player
-      fireballPosition.value = players.value[0] === player ? 'left' : 'right';
-  
-      // After the duration of the fireball movement, unset the fireballPosition to 'hide' the fireball and complete the movement
-    nextTick(() => {
-      setTimeout(() => {
-        fireballPosition.value = null;
-      }, 500); // 500ms is the duration of the fireball movement
-    });
   
       break;
     case 'Defense':
@@ -168,6 +165,8 @@ const executeMove = (move, player) => {
 }
 
 
+
+
 </script>
 
 <template>
@@ -183,13 +182,12 @@ const executeMove = (move, player) => {
       </div>
       <button @click="startGame" :disabled="selectedPlayers.length !== 2">Start Game</button>
     </div>
-    
     <!-- Game Screen -->
     <div v-else>
       <div class="game-container">
-        <div v-if="fireballPosition" class="fireball" :class="fireballPosition" :style="fireballPosition === 'left' ? 'left: 0;' : 'right: 0;'"></div>
         <!-- Display for each player -->
         <div v-for="player in players" :key="player.name" class="player-area">
+          <div v-if="fireballPosition && isPlayerTurn(player)" id="fireball" class="fireball" :class="fireballPosition"></div>
           <div class="player-info">
             <h4>{{ player.name }}</h4>
             <p>Health: {{ player.health }}</p>
@@ -242,6 +240,10 @@ const executeMove = (move, player) => {
 .player-area {
   margin: 20px;
 }
+/* .player-info {
+  z-index: 101;
+  background-color: white;
+} */
 
 .moves {
   margin-top: 20px;
@@ -269,27 +271,37 @@ const executeMove = (move, player) => {
   margin-right: auto;
   width: 10rem;
 }
-/* At the end of the <style> section */
+
+.player-info {
+  position: relative;
+}
 
 .fireball {
   position: absolute;
-  width: 50px;
-  height: 50px;
-  background: url('../assets/fireball.png') no-repeat center;
-  border-radius: 50%;
-  transition: all 0.5s;  /* this will make it move smoothly */
+  width: 50px; /* adjust as needed */
+  height: 50px; /* adjust as needed */
+  background-image: url('../assets/fireball.png');
+  background-size: cover;
+  top: 50%; /* vertically center */
+  transform: translateY(-50%); /* offset the vertical centering */
 }
 
 .fireball.left {
-  left: 0;
-  top: 50%;  /* adjust the vertical positioning as needed */
-  transform: translate(100%, -50%); /* start position for left fireball */
+  left: 100%; /* place it to the right end of player info */
+  animation: fireballToLeft 1s forwards; /* animation to move it to the left */
 }
 
 .fireball.right {
-  right: 0;
-  top: 50%;  /* adjust the vertical positioning as needed */
-  transform: translate(-100%, -50%); /* start position for right fireball */
+  right: 100%; /* place it to the left end of player info */
+  animation: fireballToRight 1s forwards; /* animation to move it to the right */
+}
+
+@keyframes fireballToLeft {
+  to { left: -100%; } /* move it outside to the left */
+}
+
+@keyframes fireballToRight {
+  to { right: -100%; } /* move it outside to the right */
 }
 
 </style>
